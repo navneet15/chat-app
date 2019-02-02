@@ -7,5 +7,30 @@
 
 	<p>Welcome to the page</p>
 
+
+<script src="socket.io/socket.io.js"></script>
+<script>
+	var socket = io();
+
+	socket.on('connect', () => {
+		console.log('connected to the server');
+
+		socket.emit('createMessage', {
+		from: 'Client',
+		text: 'Hello!!! Server'
+	});
+
+
+	});
+
+	socket.on('newMessage', function(message) {
+		console.log(message);
+	});
+
+
+	socket.on('disconnect', () => {
+		console.log('disconnected from server');
+	});
+</script>
 </body>
 </html>
